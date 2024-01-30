@@ -1,1 +1,1 @@
-# CountDown - using Vite.js
+# CountDown - Using Vite.js

@@ -1,21 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-export default function Player({unKnown,setName}) {
-  const [name,updateName]=useState("unKnown");
-  function setNameValue(event)
-  {
-    updateName(()=>event.target.value);
+export default function Player() {
+  const currentPlayerName = useRef();
+  const [name, updateName] = useState("unknown entity");
+  function save() {
+    console.log(name??"false");
+    updateName(currentPlayerName.current.value);
+    currentPlayerName.current.value='';
   }
-  function save()
-  {
-    setName(name);
-  }
-
   return (
     <section id="player">
-      <h2>Welcome {unKnown!=="unKnown"? unKnown: "unknown entity"}</h2>
+      <h2>Welcome {name!==""?name:"unknown entity"}</h2>
       <p>
-        <input type="text" onChange={setNameValue}/>
+        <input ref={currentPlayerName} type="text"/>
         <button onClick={save}>Set Name</button>
       </p>
     </section>
